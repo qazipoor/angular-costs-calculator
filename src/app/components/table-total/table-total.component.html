@@ -1,0 +1,26 @@
+<div ngDefaultControl class="flex h-14 p-2 border border-geyser border-t-1 border-t-nice-blue">
+  <div class="font-medium grow w-4/12">Total</div>
+  <div class="flex flex-col grow text-sm w-3/12">
+    <div class="flex justify-end">
+      {{service.selectedPaymentCurrency.toCurrency}}&nbsp;
+      <span class="font-medium">
+        {{currentMainCategory.quotedTotal | number: '0.0-2'}}
+      </span>
+    </div>
+    <div class="flex justify-end">
+      <span>{{baseCurrency.currency}}</span>&nbsp;
+      <span>2,279.46</span>
+    </div>
+  </div>
+  <div class="flex flex-col grow text-sm w-3/12">
+    <div class="flex justify-end">
+      <span>{{service.selectedPaymentCurrency.toCurrency}}</span>&nbsp;
+      <span class="font-medium">{{currentMainCategory.screenedTotal | number: '0.0-2'}}</span>
+    </div>
+    <div class="flex justify-end">
+      <span>{{baseCurrency.currency}}</span>&nbsp;
+      <span>2,279.46</span>
+    </div>
+  </div>
+  <div class="w-2/12"></div>
+</div>

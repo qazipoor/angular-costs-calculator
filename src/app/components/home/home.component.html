@@ -1,0 +1,20 @@
+<div class="container mx-auto">
+  <app-navbar title="Costs"></app-navbar>
+
+  <app-category *ngFor="let category of categories" [category]="category">
+    <app-category-header [category]="category"></app-category-header>
+    
+    <app-subcategory *ngFor="let subCategory of category.costItems" [subCategory]="subCategory" [category]="category">
+      <app-table-cost-row 
+        [category]="category"
+        [subCategory]="subCategory">
+        </app-table-cost-row
+      >
+      <app-table-comment-row *ngIf="subCategory.comments"
+        [subCategory]="subCategory"
+      ></app-table-comment-row>
+    </app-subcategory>
+
+    <app-table-total [category]="category"></app-table-total>
+  </app-category>
+</div>

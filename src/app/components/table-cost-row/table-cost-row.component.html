@@ -1,0 +1,88 @@
+<div class="flex items-center px-3 py-2">
+  <div
+    class="grow font-medium w-3/12"
+    [ngClass]="{
+      'w-3/12': subCategory.name !== 'Port Specific',
+      'w-5/12': subCategory.name === 'Port Specific'
+    }">
+    {{ subCategory.name }}
+  </div>
+
+  <div
+    *ngIf="subCategory.name !== 'Port Specific'"
+    class="grow font-medium w-2/12">
+    {{ subCategory.costItemAlias.accountingCode }}
+  </div>
+
+  <!-- Quote content -->
+  <div
+    class="flex flex-col grow items-end text-xs font-medium text-gray-400 w-2/12"
+    >
+    <div>
+      <span>{{service.changeMenuCurrency.toCurrency}}</span>
+      <span #quotediv class="font-bold text-sm text-gray-500">
+        {{ currentSubCatQuotedAmount | number: '0.0-2' }}</span
+      >
+    </div>
+    <div>
+      <span>{{ baseCurrency.currency }}</span>&nbsp;
+      <span>{{ quotedAmount * baseCurrency.exchangeRate | number: '0.0-2' }}</span>
+    </div>
+  </div>
+
+  <!-- Screened content -->
+  <div class="relative grow flex flex-col justify-end pl-2 w-3/12">
+    <input
+       [value]="screenedAmount"
+       (keyup)="screenedAmountChangeHandler($event)"
+      class="text-right pl-3 pr-2 w-full h-7 rounded-sm border border-[#B8C7CF] focus:outline-none focus:border-dusty-blue"
+    />
+
+    <span class="absolute top-1 left-4 text-xs text-gray-400">
+        {{service.changeMenuCurrency.toCurrency}}
+    </span>
+
+    <span class="text-right text-xs text-gray-400 font-medium">
+      {{ baseCurrency.currency }}
+      {{ quotedAmount * baseCurrency.exchangeRate | number: '0.0-2' }}
+    </span>
+  </div>
+
+  <!-- Comment icon -->
+  <div class="grow font-medium flex items-center justify-center w-2/12">
+    <a (click)="service.toggleComment($event, subCategory.id)">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="#B8C7CF"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+        />
+      </svg>
+    </a>
+    &nbsp;
+    <span>{{subCategory.comments ? subCategory.comments.length : 0}}</span>
+    <a *ngIf="subCategory.name === 'Barge Expenses'">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 ml-2"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="#B8C7CF"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+        />
+      </svg>
+    </a>
+  </div>
+</div>

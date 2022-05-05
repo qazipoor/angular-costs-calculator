@@ -1,0 +1,19 @@
+<div
+  class="font-medium flex px-3 py-2 text-white font-mediumm bg-gradient-to-r from-nice-blue to-hippie-blue mt-3"
+>
+  <div
+    class="grow 'w-3/12'"
+    [ngClass]="{
+      'w-3/12': category.name !== 'Port Specific',
+      'w-5/12': category.name === 'Port Specific'
+    }"
+  >
+    {{ category.name }}
+  </div>
+  <div *ngIf="category.name == 'Port Expenses'" class="grow w-2/12">
+    Account code
+  </div>
+  <div class="grow w-2/12 flex justify-end">Quoted</div>
+  <div class="grow w-3/12 max-w-400 flex justify-end">Screened</div>
+  <div class="grow w-2/12 max-w-250"></div>
+</div>

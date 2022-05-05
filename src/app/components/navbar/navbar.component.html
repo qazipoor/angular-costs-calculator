@@ -1,0 +1,20 @@
+<div class="flex justify-between mt-3">
+  <span class="font-bold">{{ title | uppercase }}</span>
+  <div class="flex items-center">
+    <span class="mx-3 font-medium">Currency</span>
+    <form [formGroup]="dropDown" class="ml-3"
+    class="border rounded-sm px-2 py-1">
+        <select id="topMenu" formControlName="name" (change)="topMenuChangeHandler($event)">
+            <option disabled>Select a Currency</option>
+            <option>{{sourceCurrency}}</option>
+            <option *ngFor="let currency of paymentCurrencies">
+                {{currency.toCurrency}}
+            </option>
+        </select>
+    </form>
+    <div>
+        <span class="mx-3">1 {{baseCurrency.currency}} =</span>
+        <span>{{ (service.selectedPaymentCurrency.exchangeRate | number: '0.0-2') + ' ' + service.selectedPaymentCurrency.toCurrency}}</span>
+    </div>
+  </div>
+</div>
